@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DTC Campaign Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F3F2;
+  --surface:#FFFFFF;
+  --surface-2:#F6F8F7;
+  --ink:#12201C;
+  --ink-soft:#33463F;
+  --muted:#61726B;
+  --line:#E0E6E3;
+  --line-strong:#CBD5D0;
+  --accent:#0B5D57;
+  --accent-ink:#083f3b;
+  --accent-soft:#E2EFED;
+  --pos:#127a54;
+  --pos-ink:#0c5c3f;
+  --pos-bg:#E7F4EE;
+  --pos-line:#BEE2D1;
+  --neg:#B83A31;
+  --neg-ink:#8f2c25;
+  --neg-bg:#FBEBE9;
+  --neg-line:#F2CDC9;
+  --amber:#9A6B12;
+  --amber-bg:#F7EFDC;
+  --amber-line:#E9D6A9;
+  --shadow:0 1px 2px rgba(18,32,28,.06),0 8px 24px rgba(18,32,28,.06);
+  --shadow-soft:0 1px 2px rgba(18,32,28,.05);
+  --radius:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1512;
+    --surface:#121E1A;
+    --surface-2:#16241F;
+    --ink:#E9F0ED;
+    --ink-soft:#C4D2CC;
+    --muted:#8FA39B;
+    --line:#22322C;
+    --line-strong:#2E4139;
+    --accent:#3FB9AB;
+    --accent-ink:#8fe0d5;
+    --accent-soft:#173430;
+    --pos:#4CC08C;
+    --pos-ink:#87d9b4;
+    --pos-bg:#132a22;
+    --pos-line:#255545;
+    --neg:#E4776E;
+    --neg-ink:#f0a49d;
+    --neg-bg:#2c1815;
+    --neg-line:#5a2f2a;
+    --amber:#D6AC5B;
+    --amber-bg:#2a2413;
+    --amber-line:#4d4225;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    --shadow-soft:0 1px 2px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1512;
+  --surface:#121E1A;
+  --surface-2:#16241F;
+  --ink:#E9F0ED;
+  --ink-soft:#C4D2CC;
+  --muted:#8FA39B;
+  --line:#22322C;
+  --line-strong:#2E4139;
+  --accent:#3FB9AB;
+  --accent-ink:#8fe0d5;
+  --accent-soft:#173430;
+  --pos:#4CC08C;
+  --pos-ink:#87d9b4;
+  --pos-bg:#132a22;
+  --pos-line:#255545;
+  --neg:#E4776E;
+  --neg-ink:#f0a49d;
+  --neg-bg:#2c1815;
+  --neg-line:#5a2f2a;
+  --amber:#D6AC5B;
+  --amber-bg:#2a2413;
+  --amber-line:#4d4225;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --shadow-soft:0 1px 2px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:"Bricolage Grotesque",Georgia,serif;font-weight:600;line-height:1.1;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-family:"Bricolage Grotesque",serif;letter-spacing:-.01em}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.brand small{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:400;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.tnav{display:flex;align-items:center;gap:6px}
+.tnav a{display:none;font-size:13px;color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:8px}
+.tnav a:hover{background:var(--surface-2);color:var(--ink)}
+.themebtn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);width:34px;height:34px;border-radius:9px;cursor:pointer;display:grid;place-items:center;font-size:15px}
+.themebtn:hover{color:var(--ink);border-color:var(--accent)}
+@media(min-width:820px){.tnav a{display:inline-block}}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,72px)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:44px}}
+.hero h1{font-size:clamp(30px,5.2vw,50px)}
+.hero .lede{margin-top:18px;font-size:clamp(16px,2vw,19px);color:var(--ink-soft);max-width:38ch}
+.hero .sub{margin-top:14px;color:var(--muted);font-size:15px;max-width:44ch}
+.chips-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.jump{font-family:"IBM Plex Mono",monospace;font-size:12.5px;text-decoration:none;color:var(--ink-soft);border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px;background:var(--surface)}
+.jump:hover{border-color:var(--accent);color:var(--accent)}
+.jump b{color:var(--accent);font-weight:500}
+
+/* hero card = the idea in one look */
+.snap{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.snap .cap{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.snap .cap span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.snap .cols{display:grid;grid-template-columns:1fr 1fr}
+.snap .col{padding:14px 15px}
+.snap .col.pay{background:var(--pos-bg)}
+.snap .col.block{background:var(--neg-bg);border-left:1px solid var(--line)}
+.snap .lab{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;margin-bottom:10px}
+.snap .col.pay .lab{color:var(--pos-ink)}
+.snap .col.block .lab{color:var(--neg-ink)}
+.snap .q{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-soft);padding:6px 0;border-top:1px dashed var(--line-strong);line-height:1.4}
+.snap .q:first-of-type{border-top:0}
+.dotpos,.dotneg{width:8px;height:8px;border-radius:50%;flex:none}
+.dotpos{background:var(--pos)}
+.dotneg{background:var(--neg)}
+
+/* sections */
+section{padding-block:clamp(34px,6vw,60px);border-top:1px solid var(--line)}
+.sec-head{max-width:60ch}
+.sec-head h2{font-size:clamp(23px,3.4vw,33px);margin-top:12px}
+.sec-head p{margin-top:14px;color:var(--ink-soft)}
+.num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);letter-spacing:.12em}
+
+/* problem two-facts */
+.facts{margin-top:26px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.facts{grid-template-columns:1fr 1fr}}
+.fact{border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px;background:var(--surface);box-shadow:var(--shadow-soft)}
+.fact .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;padding:4px 9px;border-radius:999px}
+.tag.red{color:var(--neg-ink);background:var(--neg-bg);border:1px solid var(--neg-line)}
+.tag.green{color:var(--pos-ink);background:var(--pos-bg);border:1px solid var(--pos-line)}
+.fact p{margin-top:12px;color:var(--ink-soft);font-size:15px}
+
+/* firewall */
+.fw{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.fw-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.counts{display:flex;gap:16px;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.counts b{font-size:16px}
+.c-pay b{color:var(--pos)}
+.c-block b{color:var(--neg)}
+.fw-actions{display:flex;gap:8px}
+.btn{font-family:"IBM Plex Sans",sans-serif;font-size:13.5px;font-weight:500;border-radius:9px;padding:8px 13px;cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-ink);color:#fff}
+:root[data-theme="dark"] .btn.primary,:root:not([data-theme="light"]) .btn.primary{color:#04120f}
+.fw-cols{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:720px){.fw-cols{grid-template-columns:1fr 1fr}}
+.fw-col{padding:16px 16px 20px}
+.fw-col.block{border-top:1px solid var(--line)}
+@media(min-width:720px){.fw-col.block{border-top:0;border-left:1px solid var(--line)}}
+.fw-col h3{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.fw-col.pay h3{color:var(--pos-ink)}
+.fw-col.block h3{color:var(--neg-ink)}
+.fw-col .hint{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.qlist{display:flex;flex-direction:column;gap:9px}
+.qcard{border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:var(--surface);cursor:pointer;transition:transform .25s ease,opacity .25s ease,border-color .2s ease,background .2s ease}
+.qcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pay .qcard{border-left:3px solid var(--pos)}
+.block .qcard{border-left:3px solid var(--neg)}
+.qcard .qtext{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.qcard .qtext .plus{color:var(--muted);font-size:15px;flex:none;transition:transform .2s ease}
+.qcard.open .qtext .plus{transform:rotate(45deg)}
+.qcard .why{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.filtered .block .qcard{opacity:.32;transform:translateX(4px)}
+.filtered .block .qcard .qtext{text-decoration:line-through;text-decoration-color:var(--neg-line)}
+.fw-foot{padding:13px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:13px;color:var(--ink-soft);display:flex;gap:9px;align-items:flex-start}
+.fw-foot .k{color:var(--accent);font-weight:600;flex:none}
+
+/* model choice */
+.tabs{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap}
+.tab{font-family:"IBM Plex Sans",sans-serif;font-size:14px;font-weight:500;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-soft);border-radius:10px;padding:9px 15px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);overflow:hidden}
+.panel-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.panel-head h3{font-size:19px}
+.owns{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+.pc{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:640px){.pc{grid-template-columns:1fr 1fr}}
+.pc .side{padding:16px 18px}
+.pc .side.up{background:var(--pos-bg)}
+.pc .side.down{background:var(--neg-bg);border-top:1px solid var(--line)}
+@media(min-width:640px){.pc .side.down{border-top:0;border-left:1px solid var(--line)}}
+.pc h4{font-family:"IBM Plex Sans",sans-serif;font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin:0 0 12px;font-weight:600}
+.pc .up h4{color:var(--pos-ink)}
+.pc .down h4{color:var(--neg-ink)}
+.pc ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.pc li{position:relative;padding-left:24px;font-size:14.5px;color:var(--ink-soft);line-height:1.45}
+.pc li::before{position:absolute;left:0;top:0;font-family:"IBM Plex Mono",monospace;font-weight:600}
+.pc .up li::before{content:"+";color:var(--pos)}
+.pc .down li::before{content:"\2013";color:var(--neg)}
+.reco{margin-top:16px;border:1px solid var(--accent);background:var(--accent-soft);border-radius:14px;padding:16px 18px;display:flex;gap:13px}
+.reco .badge{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:6px;padding:4px 8px;height:fit-content;flex:none}
+:root[data-theme="dark"] .reco .badge,:root:not([data-theme="light"]) .reco .badge{color:#04120f}
+.reco p{font-size:14.5px;color:var(--ink)}
+.reco b{color:var(--accent-ink)}
+
+/* timeline */
+.timeline{margin-top:26px;display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow-soft)}
+.step{display:grid;grid-template-columns:96px 1fr;gap:0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0}
+.step .when{padding:16px 14px;background:var(--surface-2);border-right:1px solid var(--line);font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.02em}
+.step .what{padding:16px 18px}
+.step .what h4{font-family:"IBM Plex Sans",sans-serif;font-size:15px;font-weight:600;margin:0 0 5px}
+.step .what p{font-size:14px;color:var(--ink-soft)}
+@media(min-width:640px){.step{grid-template-columns:130px 1fr}}
+
+/* checklist green */
+.check{margin-top:24px;display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.check{grid-template-columns:1fr 1fr}}
+.ci{display:flex;gap:12px;align-items:flex-start;background:var(--pos-bg);border:1px solid var(--pos-line);border-radius:12px;padding:14px 15px}
+.ci .mk{width:22px;height:22px;border-radius:6px;background:var(--pos);color:#fff;display:grid;place-items:center;font-size:13px;flex:none;font-weight:700}
+:root[data-theme="dark"] .ci .mk,:root:not([data-theme="light"]) .ci .mk{color:#04120f}
+.ci p{font-size:14px;color:var(--ink-soft)}
+.ci b{color:var(--ink);font-weight:600}
+.gate{margin-top:16px;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--pos-ink);background:var(--pos-bg);border:1px dashed var(--pos-line);border-radius:10px;padding:12px 14px;text-align:center}
+
+/* compliance two col */
+.rg{margin-top:24px;display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:680px){.rg{grid-template-columns:1fr 1fr}}
+.rgc{border-radius:14px;padding:18px;border:1px solid var(--line)}
+.rgc.g{background:var(--pos-bg);border-color:var(--pos-line)}
+.rgc.r{background:var(--neg-bg);border-color:var(--neg-line)}
+.rgc h4{font-family:"IBM Plex Sans",sans-serif;font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin:0 0 12px;font-weight:600}
+.rgc.g h4{color:var(--pos-ink)}
+.rgc.r h4{color:var(--neg-ink)}
+.rgc ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.rgc li{padding-left:22px;position:relative;font-size:14px;color:var(--ink-soft)}
+.rgc li::before{position:absolute;left:0;top:0;font-family:"IBM Plex Mono",monospace;font-weight:600}
+.rgc.g li::before{content:"\2713";color:var(--pos)}
+.rgc.r li::before{content:"\2715";color:var(--neg)}
+
+/* seo loop */
+.loop{margin-top:24px;display:grid;grid-template-columns:1fr;gap:14px;align-items:stretch}
+@media(min-width:760px){.loop{grid-template-columns:1fr auto 1fr}}
+.loopbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)}
+.loopbox .h{font-weight:600;font-family:"Bricolage Grotesque",serif;margin-bottom:6px}
+.loopbox p{font-size:14px;color:var(--ink-soft)}
+.loparr{display:grid;place-items:center;color:var(--accent);font-size:22px;font-family:"IBM Plex Mono",monospace}
+@media(max-width:759px){.loparr{transform:rotate(90deg)}}
+.loop2{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:center;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-soft);font-size:14px;color:var(--ink-soft)}
+.loop2 b{color:var(--accent-ink)}
+.loop2 .ar{color:var(--accent);font-family:"IBM Plex Mono",monospace;font-size:20px}
+@media(max-width:600px){.loop2 .ar{transform:rotate(90deg)}}
+.rgc.plain{background:var(--surface)}
+
+/* close */
+.close{border-top:1px solid var(--line);background:var(--surface-2)}
+.close .box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,4vw,38px);box-shadow:var(--shadow);text-align:center;max-width:720px;margin:0 auto}
+.close h2{font-size:clamp(22px,3.2vw,30px)}
+.close p{margin-top:14px;color:var(--ink-soft);max-width:52ch;margin-inline:auto}
+.close .line{margin-top:20px;display:inline-flex;align-items:center;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:9px 16px}
+
+footer{padding-block:26px;border-top:1px solid var(--line)}
+footer .f{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap row">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <span>AALI Consulting &amp; Associates
+        <small>Disability Tax Credit &middot; Google Ads plan</small>
+      </span>
+    </div>
+    <nav class="tnav" aria-label="Sections">
+      <a href="#firewall">The filter</a>
+      <a href="#model">The model</a>
+      <a href="#plan">First 30 days</a>
+      <a href="#rules">Safeguards</a>
+      <button class="themebtn" id="theme" type="button" aria-label="Switch light or dark">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:0">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Disability Tax Credit &middot; Greater Toronto Area</span>
+        <h1>Your DTC campaign, planned before the first click.</h1>
+        <p class="lede">A Google Ads plan built for one job: reach people in the GTA who are ready to apply for the Disability Tax Credit, and keep spend off the people who are only reading about it.</p>
+        <p class="sub">Google Ads only. No refund promises. Nothing spends until the tracking reports a real lead.</p>
+        <div class="chips-row">
+          <a class="jump" href="#firewall"><b>01</b> The wasted-spend filter</a>
+          <a class="jump" href="#model"><b>02</b> Your pricing-model call</a>
+          <a class="jump" href="#plan"><b>03</b> The first 30 days</a>
+        </div>
+      </div>
+
+      <div class="snap" aria-label="The idea in one look">
+        <div class="cap">
+          <strong style="font-family:'Bricolage Grotesque',serif;font-size:15px">The idea in one look</strong>
+          <span>same budget, sorted</span>
+        </div>
+        <div class="cols">
+          <div class="col pay">
+            <div class="lab"><span class="dotpos"></span> Pay for these</div>
+            <div class="q">disability tax credit application help</div>
+            <div class="q">dtc appeal help after denial</div>
+            <div class="q">disability tax credit consultant toronto</div>
+          </div>
+          <div class="col block">
+            <div class="lab"><span class="dotneg"></span> Block these</div>
+            <div class="q">t2201 form pdf download</div>
+            <div class="q">free disability tax credit help</div>
+            <div class="q">what is the disability tax credit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIREWALL -->
+  <section id="firewall" style="border-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">01 / THE FILTER</span>
+        <h2>Most DTC searches are people reading, not hiring. This campaign pays only for the ones ready to apply.</h2>
+        <p>Real searches from this space, sorted the way the campaign treats them. Green earns a click. Red is blocked with negative keywords before a single ad runs. Tap any search for the reason, then filter the researchers out and see what the budget is left paying for.</p>
+      </div>
+
+      <div class="fw" id="fw">
+        <div class="fw-bar">
+          <div class="counts">
+            <span class="c-pay">Paid for <b id="payCount">0</b></span>
+            <span class="c-block">Blocked <b id="blockCount">0</b></span>
+          </div>
+          <div class="fw-actions">
+            <button class="btn primary" id="filterBtn" type="button">Filter the researchers out</button>
+            <button class="btn" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+        <div class="fw-cols">
+          <div class="fw-col pay">
+            <h3><span class="dotpos"></span> Pay for these &middot; applicant intent</h3>
+            <div class="hint">Someone who wants a person to handle it.</div>
+            <div class="qlist" id="payList"></div>
+          </div>
+          <div class="fw-col block">
+            <h3><span class="dotneg"></span> Block these &middot; research &amp; DIY</h3>
+            <div class="hint">Curious, self-serving, or after free help.</div>
+            <div class="qlist" id="blockList"></div>
+          </div>
+        </div>
+        <div class="fw-foot">
+          <span class="k">Why it matters:</span>
+          <span>The block list is not a one-time job. The search-terms report gets read through the week and new researcher phrases get added as they show up, so the cost per qualified lead keeps dropping instead of drifting.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL -->
+  <section id="model">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">02 / YOUR CALL</span>
+        <h2>Pay per click or pay per lead. Here is the trade, plainly.</h2>
+        <p>You asked to understand the trade-off before committing, so this is the honest version of both, and what each one does to the data your SEO side depends on.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Pricing model">
+        <button class="tab" role="tab" id="tab-ppc" aria-controls="p-ppc" aria-selected="true">Pay per click</button>
+        <button class="tab" role="tab" id="tab-ppl" aria-controls="p-ppl" aria-selected="false">Pay per lead</button>
+      </div>
+
+      <div class="panel" id="p-ppc" role="tabpanel" aria-labelledby="tab-ppc">
+        <div class="panel-head">
+          <h3>Pay per click</h3>
+          <span class="owns">You own the account and the data</span>
+        </div>
+        <div class="pc">
+          <div class="side up">
+            <h4>What works for you</h4>
+            <ul>
+              <li>The account, the history, and the conversion data stay yours.</li>
+              <li>You see every search term that spent money, which is exactly what the SEO side needs.</li>
+              <li>Cost per lead comes down as the negatives and bids tighten week to week.</li>
+            </ul>
+          </div>
+          <div class="side down">
+            <h4>What it asks of you</h4>
+            <ul>
+              <li>Tracking has to be set and verified first, so setup is more careful.</li>
+              <li>The first few weeks are a learning phase, not full speed.</li>
+              <li>It needs active management, not set and forget.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="p-ppl" role="tabpanel" aria-labelledby="tab-ppl" hidden>
+        <div class="panel-head">
+          <h3>Pay per lead</h3>
+          <span class="owns">A third party owns the data</span>
+        </div>
+        <div class="pc">
+          <div class="side up">
+            <h4>What looks easy</h4>
+            <ul>
+              <li>A fixed price per lead feels predictable on paper.</li>
+              <li>Less setup exposure at the very start.</li>
+            </ul>
+          </div>
+          <div class="side down">
+            <h4>What you give up</h4>
+            <ul>
+              <li>You do not see the search terms, so the SEO feedback loop goes dark.</li>
+              <li>Lead quality and verification are harder to control or dispute.</li>
+              <li>You are renting results instead of building an asset you keep.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reco">
+        <span class="badge">Recommendation</span>
+        <p>Start on <b>pay per click</b>. For a credibility-sensitive service where your SEO consultant needs the search-term data, keeping the account, the tracking, and the term-level insight in your own hands is worth the extra care up front. Pay per lead can stay on the table as a test later, once there is real data to compare it against.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">03 / FIRST 30 DAYS</span>
+        <h2>How the first month actually runs.</h2>
+        <p>No mystery, no vague ramp-up. Each stage has a job, and the order is deliberate.</p>
+      </div>
+      <div class="timeline">
+        <div class="step">
+          <div class="when">Day 0</div>
+          <div class="what">
+            <h4>Set the tracking, then prove it</h4>
+            <p>GA4, the Google Ads conversion, and the eligibility-form event on the landing page. Nothing goes live until a test submission shows up correctly.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="when">Days 1&ndash;3</div>
+          <div class="what">
+            <h4>Launch tight, not wide</h4>
+            <p>DTC-only ad groups grouped by applicant intent, a day-one negative list, and ad copy that stays inside Google's rules for this category.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="when">Days 4&ndash;14</div>
+          <div class="what">
+            <h4>Read the search terms daily</h4>
+            <p>Add negatives as researcher phrases appear, pause what is not converting, and move budget toward the ad groups that bring real enquiries.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="when">Days 15&ndash;30</div>
+          <div class="what">
+            <h4>Tune toward cost per qualified lead</h4>
+            <p>Bids and budget shift to the terms that produce genuine applicants, and the first monthly view lands: spend, clicks, conversions, cost per qualified lead.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="when">Monthly</div>
+          <div class="what">
+            <h4>Report, then align with SEO</h4>
+            <p>Spend, clicks, conversions, and cost per qualified lead, plus a short call with your SEO consultant on which terms turned into leads.</p>
+          </div>
+        </div>
+      </div>
+      <div class="gate">Day 0 is the gate. GA4, the Google Ads conversion, and the landing-page event all fire on a real test lead before a single dollar goes live.</div>
+    </div>
+  </section>
+
+  <!-- REGULATED + SEO -->
+  <section id="rules">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="num">04 / SAFEGUARDS</span>
+        <h2>Built for a sensitive category, and to feed your SEO side.</h2>
+        <p>Disability sits under Google's sensitive-category rules, so targeting and claims both matter. Run it the wrong way and the account risks disapprovals or suspension. This is where a plan for a regulated service differs from a generic one.</p>
+      </div>
+      <div class="rg">
+        <div class="rgc g">
+          <h4>How this campaign runs</h4>
+          <ul>
+            <li>Targets what people search, not who they are.</li>
+            <li>Compliant copy: eligibility help, not guaranteed outcomes.</li>
+            <li>Location and intent do the work, within policy.</li>
+          </ul>
+        </div>
+        <div class="rgc r">
+          <h4>What it never does</h4>
+          <ul>
+            <li>No targeting people by health or disability.</li>
+            <li>No promised refund amounts or approval guarantees.</li>
+            <li>Nothing that risks the ad account.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="loop2">
+        <span><b>Paid</b> finds the search terms that convert into DTC enquiries</span>
+        <span class="ar" aria-hidden="true">&rarr;</span>
+        <span>Your <b>SEO consultant</b> turns those proven terms into organic content</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close">
+    <div class="wrap">
+      <div class="box">
+        <span class="eyebrow">Next step</span>
+        <h2>Want this run against your real account and landing page?</h2>
+        <p>This plan is built on the public picture. Point me at the actual campaign setup and landing page, and I can review it and walk you through what I would change, within 24 hours.</p>
+        <span class="line">A short call is usually enough to see if this is the right fit.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap f">
+    <span>Prepared for AALI Consulting &amp; Associates</span>
+    <span>Google Ads &middot; Disability Tax Credit &middot; by Usman</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // theme toggle
+  var root=document.documentElement, tbtn=document.getElementById('theme');
+  function stored(){try{return localStorage.getItem('aali-theme')}catch(e){return null}}
+  var s=stored(); if(s){root.setAttribute('data-theme',s);}
+  if(tbtn){tbtn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var next = cur==='dark' ? 'light' : (cur==='light' ? 'dark' : (matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark'));
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('aali-theme',next)}catch(e){}
+  });}
+
+  // firewall data (real searches from this space)
+  var PAY=[
+    ["disability tax credit application help","Action words plus a person doing the applying. Ready to hire."],
+    ["help applying for disability tax credit ontario","Wants hands-on help, in the right province."],
+    ["disability tax credit consultant near me","Actively looking for a professional locally."],
+    ["dtc appeal help after denial","A denial is urgent and hard to fix alone. High intent."],
+    ["disability tax credit service toronto","Service plus a GTA location. A buyer, not a reader."]
+  ];
+  var BLOCK=[
+    ["what is the disability tax credit","Pure research. No intent to hire anyone."],
+    ["t2201 form pdf download","Downloading the form to do it themselves."],
+    ["free disability tax credit help","Explicitly not going to pay."],
+    ["cra disability tax credit phone number","Going straight to CRA instead."],
+    ["medical conditions that qualify for dtc","Researching qualification, early and passive."],
+    ["disability tax credit jobs","A job seeker. Not a client at all."]
+  ];
+
+  function chip(text,why){
+    var el=document.createElement('div');
+    el.className='qcard'; el.tabIndex=0; el.setAttribute('role','button');
+    el.innerHTML='<div class="qtext"><span>'+text+'</span><span class="plus" aria-hidden="true">+</span></div><div class="why" hidden>'+why+'</div>';
+    function toggle(){var w=el.querySelector('.why'); w.hidden=!w.hidden; el.classList.toggle('open',!w.hidden);}
+    el.addEventListener('click',toggle);
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+    return el;
+  }
+
+  var payList=document.getElementById('payList'), blockList=document.getElementById('blockList');
+  PAY.forEach(function(q){payList.appendChild(chip(q[0],q[1]));});
+  BLOCK.forEach(function(q){blockList.appendChild(chip(q[0],q[1]));});
+
+  document.getElementById('payCount').textContent=PAY.length;
+  document.getElementById('blockCount').textContent=BLOCK.length;
+
+  var fw=document.getElementById('fw'), fbtn=document.getElementById('filterBtn'), rbtn=document.getElementById('resetBtn');
+  fbtn.addEventListener('click',function(){
+    var on=fw.classList.toggle('filtered');
+    fbtn.textContent = on ? 'Show all searches' : 'Filter the researchers out';
+    fbtn.classList.toggle('primary',!on);
+  });
+  rbtn.addEventListener('click',function(){
+    fw.classList.remove('filtered');
+    fbtn.textContent='Filter the researchers out'; fbtn.classList.add('primary');
+    fw.querySelectorAll('.qcard.open').forEach(function(c){c.classList.remove('open');c.querySelector('.why').hidden=true;});
+  });
+
+  // tabs
+  var tabs=[document.getElementById('tab-ppc'),document.getElementById('tab-ppl')];
+  var panels={'tab-ppc':document.getElementById('p-ppc'),'tab-ppl':document.getElementById('p-ppl')};
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected', x===t ? 'true':'false');});
+      for(var k in panels){panels[k].hidden = (k!==t.id);}
+    });
+  });
+})();
+</script>
+</body>
+</html>
